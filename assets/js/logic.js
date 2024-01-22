@@ -1,7 +1,7 @@
 var score = 0;
 var currentQuestionIndex = 0;
 var isWin = false;
-isCorrect = true
+var isCorrect = true
 
 
 var startScreenEl = document.getElementById("start-screen")
@@ -61,13 +61,14 @@ function renderQuestions() {
 
 // log correct answer/ wrong answer and play sound
 //check answer
-function checkAnswer() {
+function checkAnswer(answer) {
     isCorrect = answer.correct;
     if (answer.correct) {
-        playCorrect
+        playCorrect(); 
+    } else {
+        playIncorrect(); 
     }
-    else(playIncorrect);
-};
+}
 
 function nextQuestion() {
     currentQuestionIndex++;
@@ -75,7 +76,7 @@ function nextQuestion() {
 }
 // timer 
 function startTimer() {
-    timer = setInterval(function () {
+    var timer = setInterval(function () {
         timerCount = timer--;
         timeEl.textContent = timerCount;
         if (timerCount <= 0) {
@@ -108,6 +109,36 @@ function clearScreen() {
 }
 //Finsihed Quiz function that logs the scorecard:
 
+function logScore() {
+    var scoreCard = document.getElementById("scoreCard");
+    scoreCard.removeAttribute("class");
+    var finalScore = document.getElementById("finalScore");
+    finalScore.textContent = score;
+    questionEl.setAttribute("class", "hide");
+    nextButton.setAttribute("class", "hide");
+    clearInterval(timer);
+    logHighScore();
+}
+    
+    function logHighScore() {
+        var initials = document.getElementById("initials").value;
+        var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+        var newScore = {
+            score: score,
+            initials: initials
+        };
+        highScores.push(newScore);
+        localStorage.setItem("highScores", JSON.stringify(highScores));
+        window.location.href = "highscores.html"
+    }
+
+// End game
+function winGame() {
+    isWin = true;
+    logScore();;
+    clearScreen();
+
+}
 
 startButton.onclick = startQuiz;
 nextButton.onclick = nextQuestion;
