@@ -73,7 +73,10 @@ function checkAnswer(answer) {
 function nextQuestion() {
     currentQuestionIndex++;
     renderQuestions()
+    resetTimer();
 }
+
+
 // timer 
 function startTimer() {
     var timer = setInterval(function () {
@@ -88,6 +91,12 @@ function startTimer() {
             }
         }
     }, 1000);
+};
+//reset timer after every question
+
+function resetTimer() {
+    timer = 30;
+    timeEl.textContent = timer;
 };
 
 // play sound when the answer is given
@@ -135,9 +144,20 @@ function logScore() {
 // End game
 function winGame() {
     isWin = true;
-    logScore();;
+    logScore();
     clearScreen();
+    resetGame();
+}
 
+function resetGame() {
+
+    currentQuestionIndex = 0;
+    isWin = false;
+    isCorrect = true;
+
+    startScreenEl.removeAttribute("class");
+    questionEl.setAttribute("class", "hide");
+    nextButton.style.display = "none";
 }
 
 startButton.onclick = startQuiz;
