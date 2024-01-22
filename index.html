@@ -7,7 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Coding Quiz</title>
 
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <audio id="correct-audio" src="./assets/sfx/correct.wav"></audio>
+    <audio id="incorrect-audio" src="./assets/sfx/incorrect.wav"></audio>
+
 </head>
 
 <body>
@@ -28,24 +31,40 @@
 
         <div id="questions" class="hide">
             <h2 id="question-title"></h2>
-            <div id="choices" class="choices"></div>
-            <button id="next-button">Next</button>
+            <div id="choices" class="choices">
+                <button class="answer-button" id="answerButton1"></button>
+                <button class="answer-button" id="answerButton2"></button>
+                <button class="answer-button" id="answerButton3"></button>
+                <button class="answer-button" id="answerButton4"></button>
+            </div>
         </div>
-
-        <div id="end-screen" class="hide">
-            <h2>All done!</h2>
-            <p>Your final score is <span id="final-score"></span>.</p>
-            <p>
-                Enter initials: <input type="text" id="initials" max="3" />
-                <button id="submit">Submit</button>
-            </p>
-        </div>
-
-        <div id="feedback" class="feedback hide"></div>
+        <button id="next-button">Next</button>
     </div>
+
+    <div id="end-screen" class="hide">
+        <h2>All done!</h2>
+        <p>Your final score is <span id="final-score"></span>.</p>
+        <p>
+            Enter initials: <input type="text" id="initials" max="3" />
+            <button id="submit">Submit</button>
+        </p>
+    </div>
+
+    <div id="feedback" class="feedback hide"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("DOM content loaded!")
+            renderQuestions(); 
+            startButton.onclick = startQuiz;
+            nextButton.onclick = nextQuestion;
+        });
+    </script>
 
     <script src="./assets/js/questions.js"></script>
     <script src="./assets/js/logic.js"></script>
+</body>
+
 </body>
 
 </html>
