@@ -32,24 +32,23 @@ function startQuiz() {
 function renderQuestions() {
     // Clear the screen before rendering a new question
     clearScreen();
-
     if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
         var currentQuestion = questions[currentQuestionIndex];
         var questionNumber = currentQuestionIndex + 1;
-        questionEl.textContent = questionNumber + ". " + currentQuestion.question;
-
+        questionEl.innerHTML = questionNumber + ". " + currentQuestion.question;
         answerButtons.forEach((answerButton, i) => {
 
             // If the element is found, proceed
             if (answerButton) {
                 const answer = currentQuestion.answers[i];
                 const button = document.createElement("button");
-                button.innerHTML = answer.text;
+                button.textContent = answer.text;
                 button.classList.add("btn");
                 button.onclick = function () {
                     checkAnswer(answer);
                     nextQuestion();
                 }
+                console.log(answer)
                 // Append the button to answerButton
                 answerButton.appendChild(button);
             } else {
@@ -57,16 +56,17 @@ function renderQuestions() {
             }
         });
     }
-}
+};
 
 // log correct answer/ wrong answer and play sound
 //check answer
 function checkAnswer(answer) {
     isCorrect = answer.correct;
     if (answer.correct) {
-        playCorrect(); 
+        playCorrect();
+        score++;
     } else {
-        playIncorrect(); 
+        playIncorrect();
     }
 }
 
@@ -128,18 +128,18 @@ function logScore() {
     clearInterval(timer);
     logHighScore();
 }
-    
-    function logHighScore() {
-        var initials = document.getElementById("initials").value;
-        var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-        var newScore = {
-            score: score,
-            initials: initials
-        };
-        highScores.push(newScore);
-        localStorage.setItem("highScores", JSON.stringify(highScores));
-        window.location.href = "highscores.html"
-    }
+
+function logHighScore() {
+    var initials = document.getElementById("initials").value;
+    var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    var newScore = {
+        score: score,
+        initials: initials
+    };
+    highScores.push(newScore);
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    window.location.href = "highscores.html"
+}
 
 // End game
 function winGame() {
