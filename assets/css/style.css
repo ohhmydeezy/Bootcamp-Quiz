@@ -24,15 +24,28 @@ button {
     color: white;
     border: 0;
     transition: background-color 0.1s;
+
+};
+
+btn:hover:not([disabled]) {
+    cursor: pointer;
+    background-color: #bfa9e2;
 }
 
-button:hover {
-    background-color: #8570a5;
-}
+.btn:disabled {
+    cursor: no-drop;
+}   
 
 .choices button {
         display: block;
     }
+.correct {
+    background-color: #00c361;
+}
+
+.incorrect {
+    background-color: #ff0000;
+}
 
 input[type="text"] {
     font-size: 100%;

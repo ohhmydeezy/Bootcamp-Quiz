@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <audio id="correct-audio" src="./assets/sfx/correct.wav"></audio>
     <audio id="incorrect-audio" src="./assets/sfx/incorrect.wav"></audio>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
 
 </head>
 
@@ -26,19 +28,16 @@
                 limit. Keep in mind that incorrect answers will penalize your
                 score/time by ten seconds!
             </p>
-            <button id="startButton">Start Quiz</button>
+            <button id="start-button">Start Quiz</button>
+            <button class="hide" id="reset-button">Reset Quiz</button>
+            <button class="hide" id="highscores">Highscores</button>
         </div>
 
         <div id="questions" class="hide">
             <h2 id="question-title"></h2>
-            <div id="choices" class="choices">
-                <button class="answer-button" id="answerButton1"></button>
-                <button class="answer-button" id="answerButton2"></button>
-                <button class="answer-button" id="answerButton3"></button>
-                <button class="answer-button" id="answerButton4"></button>
+            <div class="choices" id="choices">
             </div>
         </div>
-        <button id="next-button">Next</button>
     </div>
 
     <div id="end-screen" class="hide">
@@ -55,14 +54,11 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             console.log("DOM content loaded!")
-            renderQuestions(); 
-            startButton.onclick = startQuiz;
-            nextButton.onclick = nextQuestion;
         });
     </script>
-
-    <script src="./assets/js/questions.js"></script>
-    <script src="./assets/js/logic.js"></script>
+    <script src="./assets/js/scores.js" type="module"></script>
+    <script src="./assets/js/questions.js" type="module"></script>
+    <script src="./assets/js/logic.js" type="module"></script>
 </body>
 
 </body>
