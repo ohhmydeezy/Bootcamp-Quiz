@@ -103,3 +103,8 @@ li:nth-child(odd) {
 #next-button {
     display: none;
 }
+
+#back a {
+    color: #f3edfc;
+    text-decoration: none;
+}

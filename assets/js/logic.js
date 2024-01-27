@@ -121,6 +121,8 @@ var correctAudio = document.getElementById("correct-audio");
 var incorrectAudio = document.getElementById("incorrect-audio")
 var feedbackEl = document.getElementById("feedback")
 var endScreenEl = document.getElementById("end-screen")
+var submitButton = document.getElementById("submit")
+var finalScoreEL = document.getElementById("final-score")
 
 
 // Quiz start
@@ -146,7 +148,6 @@ function renderQuestions() {
     var questionNumber = currentQuestionIndex + 1;
     questionTitleEl.textContent = questionNumber + ". " + currentQuestion.question;
 
-
     currentQuestion.answers.forEach(answer => {
         let button = document.createElement("button");
         button.textContent = answer.text;
@@ -168,16 +169,20 @@ function checkAnswer() {
         correctAnswer();
     } else {
         incorrectAnswer();
-    }
-    console.log(isCorrect)
+    };
 
     currentQuestionIndex++;
-    renderQuestions();
-}
+
+    if (currentQuestionIndex === questions.length) {
+        console.log("quiz complete");
+        endGame();  // Call endGame if the quiz is complete
+    } else {
+        renderQuestions();  // Otherwise, render the next question
+    }
+};
 
 
 // timer 
-
 
 function startTimer() {
     timerCount--;
@@ -191,28 +196,34 @@ function startTimer() {
 function correctAnswer() {
     correctAudio.play();
     feedbackEl.textContent = "Correct!";
-    showFeedback()
-        score++;
+    showFeedback("correct")
+        score += 10;
 };
 
 function incorrectAnswer() {
     incorrectAudio.play();
-    feedbackEl.textContent = "Wrong!";
     timerCount -= 5;
-    showFeedback()
+    showFeedback("incorrect")
 };
-//Finsihed Quiz function that logs the scorecard:
+
+function showFeedback(message) {
+    feedbackEl.textContent = message;
+    feedbackEl.setAttribute("class", "feedback");
+    feedbackEl.removeAttribute("class");
+    setTimeout(function () {
+        feedbackEl.setAttribute("class", "feedback hide");
+    }, 1000);
+}
 
 function logScore() {
-    var scoreCard = document.getElementById("scoreCard");
-    scoreCard.removeAttribute("class hide");
-    var finalScore = document.getElementById("finalScore");
-    finalScore.textContent = score;
-    questionTitleEl.setAttribute("class", "hide");
+    var scoreCard = document.getElementById("scoreCard");; 
+    finalScoreEL.textContent = score;
+    questionTitleEl.setAttribute("class", "hide"); 
+    questionOptions.setAttribute("class", "hide"); 
     clearInterval(timer);
     logHighScore();
-    clearScreen();
-}
+};
+
 
 function logHighScore() {
     var initials = document.getElementById("initials").value;
@@ -223,14 +234,6 @@ function logHighScore() {
     };
     highScores.push(newScore);
     localStorage.setItem("highScores", JSON.stringify(highScores));
-    window.location.href = "highscores.html"
-}
-
-function showFeedback() {
-    feedbackEl.removeAttribute("class");
-    setTimeout(function () {
-        feedbackEl.setAttribute("class", "hide");
-    }, 1000);
 }
 
 // End game
@@ -238,7 +241,6 @@ function endGame() {
     clearInterval(timer);
     endScreenEl.removeAttribute("class");
     logScore();
-    resetGame();
 }
 
 function resetGame() {
@@ -252,4 +254,5 @@ function resetGame() {
 }
 
 startButton.onclick = startQuiz;
+submitButton.onclick = logScore;
 resetButton.onclick = resetGame;
