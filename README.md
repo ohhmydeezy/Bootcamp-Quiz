@@ -65,7 +65,7 @@ The final product:
 ![start screen](./assets/Images/start-screen.png), ![questions page](./assets/Images/question.png),![end screen](./assets/Images/end-screen.png), ![high score](./assets/Images/highscores.png)
 
 
-Deployed link: 
+Deployed link: https://ohhmydeezy.github.io/Bootcamp-Quiz/
 
 Usage: 
 
