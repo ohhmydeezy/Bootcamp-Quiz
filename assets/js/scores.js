@@ -7,7 +7,7 @@ function printHighscore() {
     var highscores = JSON.parse(window.localStorage.getItem("highScores")) || [];
 
     highscores.sort(function(a, b){
-        return 
+        return (b.score - a.score)
     })
 
     for (var i = 0; i < highscores.length; i++) {
