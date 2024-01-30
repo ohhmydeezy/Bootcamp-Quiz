@@ -1,4 +1,4 @@
-const questions = [
+let questions = [
     {
         question: "JavaScript File Has An Extension of:",
         rightOption: ".js",
