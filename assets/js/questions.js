@@ -91,7 +91,7 @@ let questions = [
     },
     {
         question: "When an operator’s value is NULL, the typeof returned by the unary operator is:",
-        rightOption: "Object",
+        rightOption: "undefined",
         answers: [
             { text: "boolean"},
             { text: "undefined"},

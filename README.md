@@ -56,14 +56,14 @@ Following this an if statement was utilised to check the average change from mon
 
 ![average change](./assets/images/Average.png)
 
-Following this, two if statements were utilised to check the singles greatest increase from month to month and the single greatest loss from month to month.
+Following this, the fucntions within the scores.js page was built inclulding a clear high score function, log highscore function and a function that will order the highscores in order of best score to worst score.
 
-![]()
+![scores js ](./assets/Images/scores.png)
 
-Final step: logging the score to a highscore page: 
 
 The final product: 
-![final product]()
+![start screen](./assets/Images/start-screen.png), ![questions page](./assets/Images/question.png),![end screen](./assets/Images/end-screen.png), ![high score](./assets/Images/highscores.png)
+
 
 Deployed link: 
 

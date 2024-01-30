@@ -1,7 +1,5 @@
 var clearButton = document.getElementById("clear")
 
-
-
 function printHighscore() {
 
     var highscores = JSON.parse(window.localStorage.getItem("highScores")) || [];
